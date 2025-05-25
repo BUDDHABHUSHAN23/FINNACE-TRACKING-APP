@@ -3,6 +3,8 @@ import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
 
+import routes from './routes/index.js'; // Import the router   this will handle API routes 
+
 // Load environment variables from .env file
 dotenv.config();
 
@@ -23,6 +25,8 @@ app.get('/', (req, res) => {
     message: 'Server is working' 
   });
 });
+
+app.use('/api-v1', routes); // Use the router for API routes 
 
 // Catch-all route for 404 errors
 app.use((req, res) => {
