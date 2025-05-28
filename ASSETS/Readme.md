@@ -8,7 +8,7 @@ This is a simple financial application that allows users to create accounts, dep
 
 A full-stack application built using the PERN stack (PostgreSQL, Express.js, React, Node.js) with Tailwind CSS for styling and Zustand for state management.
 
-[Video Link](https://www.youtube.com/watch?v=SAdRcCMSjL0&t=818s)
+[Video Link](https://www.youtube.com/watch?v=SAdRcCMSjL0&t=818s)     
 
 ---
 
@@ -31,7 +31,7 @@ A full-stack application built using the PERN stack (PostgreSQL, Express.js, Rea
 
 ### 🔶 Backend
 
-- **Runtime:** Node.js
+- **Runtime:** Node.js http://localhost:6000/ 
 - **Database:** PostgreSQL
   - [node-postgres (pg)](https://node-postgres.com/)
 - **Database GUI:** [PgAdmin (Download)](https://www.postgresql.org/ftp/pgadmin/pgadmin4/v9.3/windows/)
@@ -191,3 +191,15 @@ npm start
 ```
 
 Now it's running! 
+
+
+### Hashing the pasword 
+
+salt :
+
+```info 
+A salt in hashing is a random value added to a password before it is hashed. This makes each hash unique, even if two users have the same password. It protects against attacks like rainbow tables and makes it much harder for attackers to guess passwords from hashes.
+
+Example:
+If two users have the password password123, adding a different salt for each will result in different hashes.
+```
