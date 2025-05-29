@@ -3,6 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
 
+
 import routes from './routes/index.js'; // Import the router   this will handle API routes 
 
 // Load environment variables from .env file
@@ -11,18 +12,33 @@ dotenv.config();
 // Create an Express application
 const app = express();
 
-// Set the port from environment variable or default to 8000
-const PORT = process.env.PORT || 6000;
 // Middleware
 app.use(cors()); // Changed from cors("*") to default settings
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '30mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// Add a basic test route
+
+// Set the port from environment variable or default to 8000
+const PORT = process.env.PORT || 5050;
+
+
+
+// // Add a basic test route
+// app.get('/', (req, res) => {
+//   res.json({ 
+//     status: 'running',
+//     message: 'Server is working' 
+//   });
+// });
+
+// Improved basic test route
 app.get('/', (req, res) => {
-  res.json({ 
+  res.json({
     status: 'running',
-    message: 'Server is working' 
+    message: 'Server is working',
+    environment: process.env.NODE_ENV || 'development',
+    apiVersion: 'v1',
+    serverTime: new Date().toISOString()
   });
 });
 

@@ -1,10 +1,12 @@
 // Here we will create the authController.js file
 
-import { pool } from '../config/db.js'; // Ensure pool is imported
-import { hashPassword } from '../utils/authUtils.js'; // Ensure hashPassword function is imported
+import { pool } from '../libs/database.js'; // Ensure pool is imported
+import { hashPassword } from '../libs/hashed.js'; // Ensure hashPassword function is imported
 
 // Here we will create the signUpUser function 
+// 🚀 SIGN-UP FUNCTION
 export const signUpUser = async (req, res) => {
+    console.log('REQ.BODY:', req.body);  // <-- Add this line
     try {
         const { firstName, lastName, email, password } = req.body;
 
@@ -16,13 +18,12 @@ export const signUpUser = async (req, res) => {
             });
         }
 
-        // Here by using the pool method we will check if the user already exists in the database
+        // Check if user already exists
         const userExist = await pool.query({
             text: "SELECT EXISTS (SELECT 1 FROM tbluser WHERE email = $1)",
             values: [email]
         });
 
-        // If the user already exists, we will return an error message
         if (userExist.rows[0].exists) {
             return res.status(400).json({
                 status: "error",
@@ -30,15 +31,15 @@ export const signUpUser = async (req, res) => {
             });
         }
 
-        // logic for the hashed password and insert the user into the database
+        // Hash password and insert user
         const hashedPassword = await hashPassword(password);
         const user = await pool.query({
-            text: "INSERT INTO tbluser (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *",
+            text: "INSERT INTO tbluser (firstName, lastName, email, password) VALUES ($1, $2, $3, $4) RETURNING *",
             values: [firstName, lastName, email, hashedPassword]
         });
 
-        // If the user is successfully created, we will return a success message
-        user.rows[0].password = undefined; // Remove the password from the user object
+        user.rows[0].password = undefined; // Remove password from response
+
         res.status(201).json({
             status: "success",
             message: "User is Created Successfully",
@@ -46,7 +47,7 @@ export const signUpUser = async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error);
+        console.error("❌ SIGN-UP ERROR:", error);
         res.status(500).json({
             status: "error",
             message: "Internal server error"
@@ -58,7 +59,41 @@ export const signUpUser = async (req, res) => {
 
 export const signInUser = async (req, res) => {
     try {
-        
+        const  result = await pool.query({
+            text : "SELECT * FROM tbluser WHERE email = $1",
+            values: [email]
+        });
+
+        const user = result.rows[0];  // Assuming the user is found
+        // if the user exists 
+        if (!user){
+            return res.status(400).json({
+                status: "error",
+                message: "User does not exist"
+            });
+        };
+
+        // Compare the password with the hashed password
+        const isPasswordValid = await comparePassword(password, user.password);
+        if(!isPasswordValid) {
+            return res.status(400).json({
+                status: "error",
+                message: "Invalid password"
+            });
+        };
+
+        // if password is okay then gernerate a token
+        const token = createJWT(user.id);
+        res.status(200).json({
+            status: "success",
+            message: "User signed in successfully",
+            data: {
+                user: {
+                     
+                },
+                token: token
+            }
+        });
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -80,3 +115,23 @@ export const signInUser = async (req, res) => {
 //         });
 //     }
 // };
+
+
+// Now ill create the end point for getting all the users fordatabase 
+
+export const getAllUsers = async (req, res) => {
+    try {
+        const result =await pool.query ("SELECT * FROM tbluser");
+        res.status(200).json({
+            status : "success",
+            message: "Users fetched successfully",
+            data: result.rows
+        });
+    } catch (error) {
+        Console.error("❌ GET ALL USERS ERROR:", error);
+        res.status(500).json({
+            status: "error",
+            message: "Internal server error"
+        });
+    }
+};
