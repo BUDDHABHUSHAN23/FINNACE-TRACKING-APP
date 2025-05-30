@@ -203,3 +203,17 @@ A salt in hashing is a random value added to a password before it is hashed. Thi
 Example:
 If two users have the password password123, adding a different salt for each will result in different hashes.
 ```
+
+
+---
+
+## 🛠️ Notes & Resolved Issues
+
+- Fixed database column naming mismatch (camelCase vs snake_case) for user fields.
+- Ensured Express JSON middleware is applied for correct request body parsing.
+- Added SSL configuration for PostgreSQL connection to work with Render cloud database.
+- Confirmed that user sign-up and sign-in endpoints are working and returning expected responses.
+- Implemented a test endpoint to fetch all users from the database for verification.
+- All authentication routes (`/sign-up`, `/sign-in`, `/all`) are now tested and working as expected.
+
+---

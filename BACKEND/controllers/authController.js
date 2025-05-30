@@ -1,12 +1,12 @@
 // Here we will create the authController.js file
 
 import { pool } from '../libs/database.js'; // Ensure pool is imported
-import { hashPassword } from '../libs/hashed.js'; // Ensure hashPassword function is imported
+import { hashPassword , comparePassword , createJWToken  } from '../libs/hashed.js'; // Ensure hashPassword function is imported
 
 // Here we will create the signUpUser function 
 // 🚀 SIGN-UP FUNCTION
 export const signUpUser = async (req, res) => {
-    console.log('REQ.BODY:', req.body);  // <-- Add this line
+    // console.log('REQ.BODY:', req.body);  // <-- Add this line
     try {
         const { firstName, lastName, email, password } = req.body;
 
@@ -59,6 +59,7 @@ export const signUpUser = async (req, res) => {
 
 export const signInUser = async (req, res) => {
     try {
+        const { firstName, lastName, email, password } = req.body;   // Log the request body to check the input and paasing the parameters
         const  result = await pool.query({
             text : "SELECT * FROM tbluser WHERE email = $1",
             values: [email]
@@ -83,13 +84,16 @@ export const signInUser = async (req, res) => {
         };
 
         // if password is okay then gernerate a token
-        const token = createJWT(user.id);
+        const token =  createJWToken(user.id);
         res.status(200).json({
             status: "success",
             message: "User signed in successfully",
             data: {
                 user: {
-                     
+                    id: user.id,
+                    firstName: user.firstname,   // <-- use .firstname    // this is the responser model where i can see th user
+                    lastName: user.lastname,     // <-- use .lastname
+                    email: user.email         
                 },
                 token: token
             }

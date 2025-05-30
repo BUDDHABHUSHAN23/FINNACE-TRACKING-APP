@@ -4,8 +4,8 @@
 CREATE TABLE tbluser (
 	id SERIAL NOT NULL PRIMARY KEY,
 	email VARCHAR(120) UNIQUE NOT NULL,
-	firstName VARCHAR(50) NOT NULL,
-	lastName VARCHAR(50),
+	firstname VARCHAR(50) NOT NULL,   -- First name of the user is changed to 'firstname'
+	lastname VARCHAR(50),             -- Last name of the user is changed to 'lastname'
 	contact VARCHAR(15),
 	accounts TEXT[],
 	password TEXT,
