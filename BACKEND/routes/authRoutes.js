@@ -9,3 +9,6 @@ router.get('/all', getAllUsers); // Route to get all users (for testing purposes
 // Note: Ensure that the getAllUsers function is defined in authController.js
 
 export default router; // Export the router instance
+
+
+

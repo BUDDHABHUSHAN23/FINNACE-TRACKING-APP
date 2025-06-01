@@ -31,3 +31,22 @@ export const createJWToken =  (id) => {
         expiresIn: '1d' // Token will expire in 30 days
     }); // Sign the token with the user ID and secret key
 };
+
+
+export function getMonthName(index) {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  return months[index];
+}
