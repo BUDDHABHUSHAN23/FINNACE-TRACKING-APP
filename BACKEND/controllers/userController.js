@@ -1,9 +1,10 @@
 // Description: User controller for handling user-related operations
 
-import { match } from "assert";
+
 import { pool } from "../libs/database.js"; // Ensure pool is imported
 import { comparePassword, hashPassword } from "../libs/hashed.js";
-import { text } from "stream/consumers";
+
+
 
 export const getUser = async (req, res) => {
     try {
@@ -65,6 +66,14 @@ export const updateUser = async (req, res) => {
             text: "UPDATE tbluser SET firstname = $1, lastname = $2, county = $3, currency = $4, contact = $5 , updatedar = CURRENT_TIMESTAMP WHERE userId = $6 RETUNING *",
             values: [firstname, lastname, county, currency, contact, userId] 
         });  
+
+        updateUser.rows[0].password = undefined; // Remove password from response
+        // Send response to the user that the profile is updated
+            res.status(200).json({
+                status: "success",
+                message: "User profile updated successfully",
+                data: updateUser.rows[0]
+            }); 
 
     } catch (error) {
         console.log(error);

@@ -46,6 +46,8 @@ export const signUpUser = async (req, res) => {
             data: user.rows[0]
         });
 
+        
+
     } catch (error) {
         console.error("❌ SIGN-UP ERROR:", error);
         res.status(500).json({

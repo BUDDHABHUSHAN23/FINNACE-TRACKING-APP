@@ -5,21 +5,22 @@ import JWT from "jsonwebtoken";
 const authMiddleware = async (req, res, next) => {
   const authHeader = req?.headers?.authorization;
 
-  if (!authHeader || !authHeader?.startsWith("Bearer")) {
-    return res
-      .status(401)
-      .json({ status: "auth_failed", message: "Authentication failed" });
+  // Check if the Authorization header is missing or not in Bearer format
+  if (!authHeader || !authHeader.startsWith("Bearer")) {
+    return res.status(401).json({
+      status: "auth_failed",
+      message: "Authentication failed",
+    });
   }
 
+  // Extract the token from the Authorization header ("Bearer <token>")
+  const token = authHeader.split(" ")[1];
 
-// Extract the token from the Authorization header "Bearer <token>" format 
-  const token = authHeader?.split(" ")[1];
-
-
-  // Verify the token using the secret key
   try {
+    // Verify the token using the secret key
     const userToken = JWT.verify(token, process.env.JWT_SECRET);
 
+    // Add user info to the request object
     req.body.user = {
       userId: userToken.userId,
     };
@@ -27,9 +28,10 @@ const authMiddleware = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
-    return res
-      .status(401)
-      .json({ status: "auth_failed", message: "Authentication failed" });
+    return res.status(401).json({
+      status: "auth_failed",
+      message: "Authentication failed",
+    });
   }
 };
 
