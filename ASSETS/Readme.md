@@ -22,17 +22,20 @@ A full-stack application built using the PERN stack (PostgreSQL, Express.js, Rea
 
 ### 🔷 Frontend
 
-- **Framework:** [Vite + React](https://vite.dev/guide/)
+- **Framework:** [Vite + React](https://vite.dev/guide/), [React Router](https://reactrouter.com/home)  
+  *(Helpful link for study)*
+
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/docs/installation/using-vite)
-- **State Management:** [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)
+
+- **State Management:** [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)  
   - [Zustand Demo](https://zustand-demo.pmnd.rs/)
 
 ---
 
 ### 🔶 Backend
 
-- **Runtime:** Node.js http://localhost:6000/ 
-- **Database:** PostgreSQL
+- **Runtime:** Node.js  
+- **Database:** PostgreSQL  
   - [node-postgres (pg)](https://node-postgres.com/)
 - **Database GUI:** [PgAdmin (Download)](https://www.postgresql.org/ftp/pgadmin/pgadmin4/v9.3/windows/)
 
@@ -60,6 +63,8 @@ A full-stack application built using the PERN stack (PostgreSQL, Express.js, Rea
 ---
 
 ## 🔶 Backend Setup Guide
+
+---
 
 ### Step 1: Initialize Node.js Project
 
@@ -192,19 +197,18 @@ npm start
 
 Now it's running! 
 
+---
 
-### Hashing the pasword 
+### Hashing the password 
 
-salt :
+**Salt:**
 
-```info 
-A salt in hashing is a random value added to a password before it is hashed. This makes each hash unique, even if two users have the same password. 
-It protects against attacks like rainbow tables and makes it much harder for attackers to guess passwords from hashes.
-
-Example:
-If two users have the password password123, adding a different salt for each will result in different hashes.
-```
-
+> A salt in hashing is a random value added to a password before it is hashed.  
+> This makes each hash unique, even if two users have the same password.  
+> It protects against attacks like rainbow tables and makes it much harder for attackers to guess passwords from hashes.
+>
+> **Example:**  
+> If two users have the password `password123`, adding a different salt for each will result in different hashes.
 
 ---
 
