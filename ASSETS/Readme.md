@@ -198,7 +198,8 @@ Now it's running!
 salt :
 
 ```info 
-A salt in hashing is a random value added to a password before it is hashed. This makes each hash unique, even if two users have the same password. It protects against attacks like rainbow tables and makes it much harder for attackers to guess passwords from hashes.
+A salt in hashing is a random value added to a password before it is hashed. This makes each hash unique, even if two users have the same password. 
+It protects against attacks like rainbow tables and makes it much harder for attackers to guess passwords from hashes.
 
 Example:
 If two users have the password password123, adding a different salt for each will result in different hashes.
