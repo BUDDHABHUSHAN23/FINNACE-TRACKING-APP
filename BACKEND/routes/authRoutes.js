@@ -1,5 +1,5 @@
 import express from 'express';   // Import express
-import { signInUser, signUpUser ,getAllUsers } from '../controllers/authController.js';   // This is shortcut we have used over here select + ctrl + space to import the functions from the authController file
+import { signInUser, signUpUser , getAllUsers } from '../controllers/authController.js';   // This is shortcut we have used over here select + ctrl + space to import the functions from the authController file
  
 const router = express.Router(); // Create a new router instance
 

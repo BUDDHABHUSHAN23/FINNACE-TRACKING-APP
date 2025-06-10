@@ -2,7 +2,7 @@
 import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
-
+import bodyParser from "body-parser";
 
 import routes from './routes/index.js'; // Import the router   this will handle API routes 
 
@@ -11,6 +11,9 @@ dotenv.config();
 
 // Create an Express application
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Middleware
 app.use(cors()); // Changed from cors("*") to default settings

@@ -8,7 +8,7 @@ This is a simple financial application that allows users to create accounts, dep
 
 A full-stack application built using the PERN stack (PostgreSQL, Express.js, React, Node.js) with Tailwind CSS for styling and Zustand for state management.
 
-[Video Link](https://www.youtube.com/watch?v=SAdRcCMSjL0&t=818s)     
+[Video Link](https://www.youtube.com/watch?v=SAdRcCMSjL0&t=818s)     https://www.youtube.com/watch?v=IIUyZjI6g24  
 
 ---
 
@@ -120,7 +120,7 @@ Use the above credentials to connect to the **PostgreSQL** database via **PgAdmi
 
 #### Connection Steps in PgAdmin4
 
-1. Open **PgAdmin4**.
+1. Open **PgAdmin4**.                                         postgresql://expense_admin:stwX7c7AD5Bsumr6foIprREFfYbqjcXg@dpg-d0on6codl3ps73a4tck0-a.oregon-postgres.render.com/expense_tracker_mudg
 2. Right-click on **Servers** → *Create* → *Server*.
 3. Under the **General** tab, give a name (e.g., `RenderDB`).
 4. Go to the **Connection** tab and fill in:

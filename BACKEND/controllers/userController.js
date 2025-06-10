@@ -1,6 +1,5 @@
 // Description: User controller for handling user-related operations
 
-
 import { pool } from "../libs/database.js"; // Ensure pool is imported
 import { comparePassword, hashPassword } from "../libs/hashed.js";
 
