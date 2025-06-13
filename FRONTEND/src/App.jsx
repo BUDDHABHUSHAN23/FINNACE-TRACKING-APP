@@ -1,5 +1,7 @@
 import React from 'react';
-import {Navigate, Route, Routes} from 'react'; // Import necessary components from react-router-dom
+import {Navigate, Route, Routes} from 'react-router-dom'; // Import necessary components from react-router-dom
+import SignIn from './Pages/auth/sign-in';
+import SignUp from './Pages/auth/sign-up';  
 
 function App() {
 
@@ -7,16 +9,17 @@ function App() {
   return (
     <main>  
       <div> 
-        {/* <Routes> // Define routes for the application
-          <Route path="/" element={<Navigate to="/home" />} /> // Redirect root path to /home
-          <Route path="/home" element={<h1>Home Page</h1>} /> // Home page route
-          <Route path="/about" element={<h1>About Page</h1>} /> // About page route
-          <Route path="/contact" element={<h1>Contact Page</h1>} /> // Contact page route
-          <Route path="*" element={<h1>404 Not Found</h1>} /> // Catch-all route for 404 errors
-        </Routes> */}
+        <Routes> // Define routes for the application
+
+
+          
+          <Route path="/sign-in" element={<SignIn />} /> // This are the Sign-in route 
+          <Route path="/sign-up" element={<SignUp /> }/> // This is route for sign-up
+
+        </Routes>
 
       </div>
-      
+       
     </main>
   )
 }

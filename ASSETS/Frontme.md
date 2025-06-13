@@ -100,3 +100,13 @@ now im going to have work on the routes in the main.jsx
 i was working on the 
 
 Let me know if you want to add your custom structure or need help describing any specific folders or files!
+
+
+after setting up the pages file like store , libs etc and pages 
+  => in the main.jsx we created the browser routes 
+    <BrowserRouter>   // Wrap your app with BrowserRouter this helps us to navigate in between pages 
+        <App />
+    </BrowserRouter>  like this helps us to navigate betweek the routes 
+
+
+    in the app.jsx we are creating the public as well as the private routs

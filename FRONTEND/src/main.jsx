@@ -5,8 +5,8 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'   // Import BrowserRouter for routing
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
+  <StrictMode>   
+    <BrowserRouter>   // Wrap your app with BrowserRouter this helps us to navigate in between pages 
         <App />
     </BrowserRouter>
     
