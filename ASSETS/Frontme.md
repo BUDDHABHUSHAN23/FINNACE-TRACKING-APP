@@ -110,3 +110,7 @@ after setting up the pages file like store , libs etc and pages
 
 
     in the app.jsx we are creating the public as well as the private routs
+
+    public routes = > < routes path = 'sign-in' element ={'/SignIn'}>
+
+    private routes => <routes path = "/" element ={<navigate to = "/overview">}>   
